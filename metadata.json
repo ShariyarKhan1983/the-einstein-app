@@ -1,0 +1,8 @@
+{
+  "name": "The Einstein - Your Personal AI Tutor",
+  "description": "Your Permanent AI Personal Tutor. I teach, I track, I motivate. No humans involved.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
