@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Edit3, FileText, Brain, Mic, Eye, List, MessageCircle } from 'lucide-react';
+import { BookOpen, Edit3, FileText, Brain, Mic, Eye, List, MessageCircle, GraduationCap } from 'lucide-react';
 import { PlanTier, ToolMode } from '../types';
 
 interface Props {
@@ -12,16 +12,17 @@ const Toolbox: React.FC<Props> = ({ plan, onSelectTool, onUpgrade }) => {
   const isFree = plan === PlanTier.FREE;
 
   const tools = [
-    { id: ToolMode.GENERAL, name: 'General AI Tutor', desc: "Ask anything, get help instantly", icon: MessageCircle, color: 'bg-slate-100 text-slate-700' },
-    { id: ToolMode.LOGIC, name: 'Step-by-Step Logic', desc: "Explains concepts logically", icon: List, color: 'bg-emerald-100 text-emerald-700' },
+    { id: ToolMode.GENERAL, name: 'General AI Tutor', desc: "Ask anything, get help instantly", icon: MessageCircle, color: 'bg-slate-100 text-slate-700', locked: false },
+    { id: ToolMode.LOGIC, name: 'Step-by-Step Logic', desc: "Explains concepts logically", icon: List, color: 'bg-emerald-100 text-emerald-700', locked: isFree },
     { id: ToolMode.ENGLISH_TALKING, name: 'Learn English Talking', desc: "Practice conversation (Pro+)", icon: Mic, color: 'bg-indigo-100 text-indigo-700', locked: isFree },
-    { id: ToolMode.GRAMMAR, name: 'English Vinglish', desc: "Grammar correction", icon: Edit3, color: 'bg-blue-100 text-blue-700' },
-    { id: ToolMode.MOCK_TEST, name: 'Mock Test Examiner', desc: "Generate quizzes", icon: FileText, color: 'bg-pink-100 text-pink-700' },
-    { id: ToolMode.NOTES, name: 'Kitaab-to-Notes', desc: "Summarize to bullet points", icon: BookOpen, color: 'bg-amber-100 text-amber-700' },
-    { id: ToolMode.MEMORY, name: 'Yaad Karao', desc: "Mnemonics & rhymes", icon: Brain, color: 'bg-green-100 text-green-700' },
-    { id: ToolMode.ESSAY, name: 'Essay Architect', desc: "Generate structured outlines", icon: Edit3, color: 'bg-purple-100 text-purple-700' },
+    { id: ToolMode.GRAMMAR, name: 'English Vinglish', desc: "Grammar correction", icon: Edit3, color: 'bg-blue-100 text-blue-700', locked: isFree },
+    { id: ToolMode.LECTURE, name: 'Lecture Hall', desc: "Deep dive topic explanations", icon: GraduationCap, color: 'bg-red-100 text-red-700', locked: isFree },
+    { id: ToolMode.MOCK_TEST, name: 'Mock Test Examiner', desc: "Generate quizzes", icon: FileText, color: 'bg-pink-100 text-pink-700', locked: isFree },
+    { id: ToolMode.NOTES, name: 'Kitaab-to-Notes', desc: "Summarize to bullet points", icon: BookOpen, color: 'bg-amber-100 text-amber-700', locked: isFree },
+    { id: ToolMode.MEMORY, name: 'Yaad Karao', desc: "Mnemonics & rhymes", icon: Brain, color: 'bg-green-100 text-green-700', locked: isFree },
+    { id: ToolMode.ESSAY, name: 'Essay Architect', desc: "Generate structured outlines", icon: Edit3, color: 'bg-purple-100 text-purple-700', locked: isFree },
     { id: ToolMode.VIVA, name: 'Viva Drill', desc: "Oral exam roleplay", icon: Mic, color: 'bg-orange-100 text-orange-700', locked: isFree },
-    { id: ToolMode.VISUALIZER, name: 'Concept Visualizer', desc: "Real-world analogies", icon: Eye, color: 'bg-sky-100 text-sky-700' },
+    { id: ToolMode.VISUALIZER, name: 'Concept Visualizer', desc: "Real-world analogies", icon: Eye, color: 'bg-sky-100 text-sky-700', locked: isFree },
   ];
 
   return (
@@ -57,7 +58,10 @@ const Toolbox: React.FC<Props> = ({ plan, onSelectTool, onUpgrade }) => {
 
             {tool.locked && (
               <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-end px-4">
-                <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">PRO</span>
+                <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm flex items-center gap-1">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  PRO
+                </span>
               </div>
             )}
           </button>
