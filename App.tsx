@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './components/Layout';
-import Dashboard from './components/Dashboard';
-import ChatInterface from './components/ChatInterface';
-import Toolbox from './components/Toolbox';
-import Profile from './components/Profile';
-import PlanSelection from './components/PlanSelection';
-import LoginScreen from './components/LoginScreen';
+import Layout from './Layout';
+import Dashboard from './Dashboard';
+import ChatInterface from './ChatInterface';
+import Toolbox from './Toolbox';
+import Profile from './Profile';
+import PlanSelection from './PlanSelection';
+import LoginScreen from './LoginScreen';
 import { PlanTier, UserState, ToolMode, ScheduleItem, ExamItem, LearningGap, ChatMessage } from './types';
-import { updateReports } from './services/reportService';
-import { generateResponse } from './services/geminiService';
+import { updateReports } from './reportService';
+import { generateResponse } from './geminiService';
 
 const WELCOME_MESSAGES: Record<string, string> = {
   [ToolMode.GENERAL]: "Hello! I’m The Einstein - Your Personal AI Tutor. I provide expert-level answers to simplify your studies. I don't judge, I don't get angry, and you can ask me questions until you fully understand them.\n\nSimply type your question here! You can upload chapters or question papers, or send Voice Notes in any Indian language. Feel free to check the Tool Page or ask for video links and diagrams whenever you need them.\n\nTell me, what do you want me to explain now?",
