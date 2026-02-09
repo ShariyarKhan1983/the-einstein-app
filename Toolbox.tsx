@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookOpen, Edit3, FileText, Brain, Mic, Eye, List, MessageCircle, GraduationCap } from 'lucide-react';
-import { PlanTier, ToolMode } from '../types';
+import { PlanTier, ToolMode } from './types';
 
 interface Props {
   plan: PlanTier;
