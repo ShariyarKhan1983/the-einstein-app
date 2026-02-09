@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlanTier } from '../types';
+import { PlanTier } from './types';
 import { Check, X, Zap, Star, User, Loader2, CreditCard, BookOpen, Mic, Eye, Brain, Edit3, List, MessageCircle, FileText, Volume2, Lock, Video } from 'lucide-react';
 
 interface Props {
