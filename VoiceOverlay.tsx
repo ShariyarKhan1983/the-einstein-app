@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Mic, Loader2, Wifi, WifiOff, Volume2, AlertCircle, MessageSquare, Image as ImageIcon } from 'lucide-react';
-import { PlanTier, ChatMessage, Language } from '../types';
+import { PlanTier, ChatMessage, Language } from './types';
 import { GoogleGenAI, LiveServerMessage, Modality } from '@google/genai';
-import { fileToBase64 } from '../services/geminiService';
+import { fileToBase64 } from './geminiService';
 
 interface Props {
   isOpen: boolean;
