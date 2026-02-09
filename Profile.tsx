@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlanTier, UserState, Language } from '../types';
+import { PlanTier, UserState, Language } from './types';
 import { User, ChevronRight, LogOut, Calendar, Globe, Bell, Edit2, Check, X, Clock, ShieldCheck } from 'lucide-react';
 import LegalModal from './LegalModal';
 
