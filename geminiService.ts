@@ -1,5 +1,5 @@
 import { GoogleGenAI, Modality, Type, FunctionDeclaration } from "@google/genai";
-import { PlanTier, Language, ChatMessage } from "../types";
+import { PlanTier, Language, ChatMessage } from "./types";
 
 // Helper to convert file to Base64
 export const fileToBase64 = (file: File): Promise<string> => {
