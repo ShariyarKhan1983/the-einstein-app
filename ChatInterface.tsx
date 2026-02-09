@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { PlanTier, ChatMessage, ToolMode, Language, LearningGap } from '../types';
+import { PlanTier, ChatMessage, ToolMode, Language, LearningGap } from './types';
 import { Send, Plus, Image as ImageIcon, Mic, FileText, Video, X, Zap, StopCircle, Volume2, Square, User, Loader2, ArrowLeft, ExternalLink, Search, Brain } from 'lucide-react';
-import { generateResponse, generateSpeech, fileToBase64 } from '../services/geminiService';
+import { generateResponse, generateSpeech, fileToBase64 } from './geminiService';
 
 interface Props {
   plan: PlanTier;
