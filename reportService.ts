@@ -1,4 +1,4 @@
-import { WeeklyReport, UserState } from "../types";
+import { WeeklyReport, UserState } from "./types";
 
 export const generateWeeklyReport = (user: UserState): WeeklyReport => {
   // Real Logic: Calculate score based on engagement
