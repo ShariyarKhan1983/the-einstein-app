@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, HelpCircle, Calendar, Plus, ChevronRight, X, Trash2, Clock, Edit2, BookOpen, ArrowRight } from 'lucide-react';
-import { PlanTier, UserState, ScheduleItem, ExamItem, LearningGap } from '../types';
+import { PlanTier, UserState, ScheduleItem, ExamItem, LearningGap } from './types';
 
 interface Props {
   plan: PlanTier;
