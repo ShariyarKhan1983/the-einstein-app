@@ -23,7 +23,8 @@ export const generateSpeech = async (text: string, plan: PlanTier): Promise<stri
     return null; 
   }
 
-  const apiKey = process.env.API_KEY;
+  // FIX: Updated to use VITE_API_KEY
+  const apiKey = import.meta.env.VITE_API_KEY;
   if (!apiKey) throw new Error("API Key not found");
   const ai = new GoogleGenAI({ apiKey });
 
@@ -37,7 +38,7 @@ export const generateSpeech = async (text: string, plan: PlanTier): Promise<stri
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-preview-tts",
+      model: "gemini-2.0-flash", // Updated to stable flash model
       contents: { parts: [{ text: truncatedText }] },
       config: {
         responseModalities: [Modality.AUDIO],
@@ -84,7 +85,9 @@ export const generateResponse = async (
   systemInstruction?: string,
   history: ChatMessage[] = []
 ): Promise<{ text: string; detectedGap?: { topic: string; subject: string } }> => {
-  const apiKey = process.env.API_KEY;
+  
+  // FIX: Updated to use VITE_API_KEY
+  const apiKey = import.meta.env.VITE_API_KEY;
   if (!apiKey) throw new Error("API Key not found");
 
   const ai = new GoogleGenAI({ apiKey });
@@ -93,21 +96,21 @@ export const generateResponse = async (
   // PRO Plan: Restricted to ₹40 variable cost. MUST use Flash.
   // ULTRA Plan: Uses Pro for intelligence, but Flash for heavy inputs (Audio/Video).
   
-  let modelName = 'gemini-3-flash-preview'; 
+  let modelName = 'gemini-2.0-flash'; 
 
   if (plan === PlanTier.ULTRA) {
       // Ultra Strategy: 
       // Heavy Inputs (Video & Audio) -> Flash (Cost efficiency for unlimited usage - "15 hours is cheap")
       // High IQ (Text & Image) -> Pro (Premium Intelligence)
       if (attachment && (attachment.mimeType.startsWith('video/') || attachment.mimeType.startsWith('audio/'))) {
-          modelName = 'gemini-3-flash-preview';
+          modelName = 'gemini-2.0-flash';
       } else {
-          modelName = 'gemini-3-pro-preview';
+          modelName = 'gemini-2.0-pro-exp-02-05'; // Updated to latest stable Pro
       }
   } else if (plan === PlanTier.PRO) {
       // Pro Strategy: STRICTLY Flash
       // Covers: "Gemini 1.5 Flash for vision" & "Input processing (Flash) for 900 mins audio"
-      modelName = 'gemini-3-flash-preview'; 
+      modelName = 'gemini-2.0-flash'; 
   }
   
   // Construct Contents (History + Current)
@@ -134,7 +137,7 @@ export const generateResponse = async (
              parts.unshift({ inlineData: { mimeType: 'image/jpeg', data: msg.image } });
           }
 
-          contents.push({ role: msg.role, parts: parts });
+          contents.push({ role: msg.role === 'user' ? 'user' : 'model', parts: parts });
       });
   }
 
