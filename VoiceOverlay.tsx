@@ -84,7 +84,7 @@ const VoiceOverlay: React.FC<Props> = ({ isOpen, onClose, plan, language, addMes
     setLiveTranscript("Connecting with The Einstein Team...");
 
     try {
-      const apiKey = process.env.API_KEY;
+      const apiKey = import.meta.env.VITE_API_KEY
       if (!apiKey) {
         setLiveTranscript("Error: API Key is missing in environment variables.");
         setState('error');
